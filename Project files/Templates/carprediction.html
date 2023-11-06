@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Purchase Prediction</title>
+    <style>
+        /* CSS for center alignment */
+        .center-align {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 0vh;
+            margin-top: 200px;
+            color: rgb(0, 0, 0);
+           
+            max-height: 100%
+        }
+        .display1 {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: white;
+ 
+        }
+
+        /* CSS for the heading */
+        .heading {
+            font-size: 35px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">Car Purchase Prediction</h1>
+    <form  class="center-align" action="/predict" method="post">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br>
+        
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required min="0"><br>        
+
+        <label for="annualSalary">Annual Salary:</label>
+        <input type="number" id="annualSalary" name="annualSalary" required><br>
+
+        <!-- Hidden input field for Age_Salary_Interact -->
+        <input type="hidden" id="ageSalaryInteract" name="ageSalaryInteract" value="">
+
+        <input type="submit" value="Predict">
+
+        <div class ='display1'>
+            <a href="/">Go to Home</a>
+            <a href="/about">Go to About Us</a>
+        </div> 
+
+    </form>
+
+    <div class="center-align" id="prediction-result">
+        {% if prediction is defined %}
+        
+        <p>Prediction: {% if prediction == 0 %}The user will most likely not make a purchase{% else %}The user is likely to make a purchase{% endif %}</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
